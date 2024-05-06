@@ -7,7 +7,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 public class App {
     public static void main(String[] args) {
 
-        String testString = "d4 ^ (w1 v w2 v f2 v f3 v a1)";
+        String testString = "d2 ^ (w3 v f3 v a5)";
         CharStream inputStream = CharStreams.fromString(testString);
 
         SignalLexer lexer = new SignalLexer(inputStream);
@@ -17,6 +17,7 @@ public class App {
         SignalParser.ProgContext ctx = parser.prog();
         CustomSignalVisitor visitor = new CustomSignalVisitor();
         visitor.visit(ctx);
+        visitor.outputJson.recalculateFinalAlert();
         System.out.println(visitor.outputJson);
     }
 }

@@ -1,7 +1,6 @@
 package at.example;
 
-import java.util.HashMap;
-import java.util.Map;
+import at.example.enums.DifficultyCategory;
 
 public class CustomSignalVisitor extends SignalBaseVisitor<String> {
 
@@ -20,8 +19,12 @@ public class CustomSignalVisitor extends SignalBaseVisitor<String> {
 
     @Override
     public String visitRoute(SignalParser.RouteContext ctx) {
+
         System.out.println(ctx.DIFFICULTY().getText());
+        int diffValue = Integer.parseInt(ctx.DIFFICULTY().getText().substring(1));
+        outputJson.difficulty = DifficultyCategory.values()[diffValue-1];
         return visitChildren(ctx);
+
     }
 
     @Override
@@ -41,9 +44,6 @@ public class CustomSignalVisitor extends SignalBaseVisitor<String> {
             int value = Integer.parseInt(ctx.getText().substring(1));
             if(outputJson.weatherConditions.get(elem) < value)
                 outputJson.weatherConditions.put(elem, value);
-
-            System.out.println(elem + " " + value);
-            System.out.println(ctx.getText());
             return visitChildren(ctx);
         }
         return null;
