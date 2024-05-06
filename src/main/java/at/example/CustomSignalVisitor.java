@@ -9,7 +9,9 @@ public class CustomSignalVisitor extends SignalBaseVisitor<String> {
     @Override
     public String visitProg(SignalParser.ProgContext ctx) {
         //if(!(ctx.parent instanceof SignalParser.ProgContext)) return null;
-        return visitChildren(ctx);
+        String vis = visitChildren(ctx);
+        outputJson.recalculateFinalAlert();
+        return vis;
     }
 
     @Override

@@ -17,7 +17,6 @@ public class App {
         SignalParser.ProgContext ctx = parser.prog();
         CustomSignalVisitor visitor = new CustomSignalVisitor();
         visitor.visit(ctx);
-        visitor.outputJson.recalculateFinalAlert();
         System.out.println(visitor.outputJson);
     }
 }
