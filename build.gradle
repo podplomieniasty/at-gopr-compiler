@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'antlr'
+    id 'idea'
+}
+
+group = 'at.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    antlr "org.antlr:antlr4:4.9.3"
+    compileOnly "org.antlr:antlr4-runtime:4.9.3"
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+generateGrammarSource {
+    maxHeapSize = "128m"
+    arguments = ['-package', 'at.example.GoprCompiler', '-visitor', '-no-listener']
+}
+compileJava.dependsOn generateGrammarSource
+
+sourceSets {
+    generated {
+        java.srcDir "src/main/java/"
+    }
+}
+compileJava.source sourceSets.generated.java, sourceSets.main.java
+
+clean {
+    delete 'src'
+}
+
+idea {
+    module {
+        sourceDirs += file('src/main/java/')
+    }
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
