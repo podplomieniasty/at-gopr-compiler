@@ -16,13 +16,13 @@ public class CustomSignalVisitor extends SignalBaseVisitor<String> {
 
     @Override
     public String visitLine(SignalParser.LineContext ctx) {
+        System.out.printf("[%s] Visited provided input as: %s\n", CustomSignalVisitor.class.getSimpleName(), ctx.getText());
         return visitChildren(ctx);
     }
 
     @Override
     public String visitRoute(SignalParser.RouteContext ctx) {
 
-        System.out.println(ctx.DIFFICULTY().getText());
         int diffValue = Integer.parseInt(ctx.DIFFICULTY().getText().substring(1));
         outputJson.difficulty = DifficultyCategory.values()[diffValue-1];
         return visitChildren(ctx);

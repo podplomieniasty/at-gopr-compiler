@@ -14,7 +14,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class CustomSignalJSON {
 
@@ -25,11 +24,11 @@ public class CustomSignalJSON {
     Map<String, Integer> weatherConditions = new HashMap<>();
 
     CustomSignalJSON() {
-        weatherConditions.put("W", -1); // wind
-        weatherConditions.put("F", -1); // fog
-        weatherConditions.put("T", -1); // temperature
-        weatherConditions.put("R", -1); // rain/storm
-        weatherConditions.put("A", -1); // avalanche risk
+        weatherConditions.put("W", 0); // wind
+        weatherConditions.put("F", 0); // fog
+        weatherConditions.put("T", 0); // temperature
+        weatherConditions.put("R", 0); // rain/storm
+        weatherConditions.put("A", 0); // avalanche risk
         importJsonData();
     }
 
@@ -61,7 +60,11 @@ public class CustomSignalJSON {
     }
 
     public void importJsonData() {
-        // to rework
+        /*
+        * there is a better way to do it
+        * i just couldnt care to look for it
+        * im sorry if u have to read this
+        * */
         JSONParser parser = new JSONParser();
         try(FileReader reader = new FileReader("data/signals.json")) {
             Object obj = parser.parse(reader);
@@ -75,6 +78,10 @@ public class CustomSignalJSON {
 
     private void assessThreat(String alert) {
 
+        /*
+        * im truly sorry.
+        * may god have mercy upon you.
+        * */
         JSONArray categories = (JSONArray) jsonObject.get("categories");
         JSONObject currentObject = new JSONObject();
         boolean matched = false;
@@ -91,10 +98,10 @@ public class CustomSignalJSON {
         }
 
         // check if conditions matches current threat level
-        if(this.getCondition("W") >= (Long)currentObject.get("minWindLv") ||
-            this.getCondition("F") >= (Long)currentObject.get("minFogLv") ||
-            this.getCondition("T") >= (Long)currentObject.get("minTemperatureLv") ||
-            this.getCondition("R") >= (Long)currentObject.get("minRainLv") ||
+        if(this.getCondition("W") >= (Long)currentObject.get("minWindLv") &&
+            this.getCondition("F") >= (Long)currentObject.get("minFogLv") &&
+            this.getCondition("T") >= (Long)currentObject.get("minTemperatureLv") &&
+            this.getCondition("R") >= (Long)currentObject.get("minRainLv") &&
             this.getCondition("A") >= (Long)currentObject.get("minAvalancheLv")) {
             switch(alert) {
                 case "E5": this.category = FinalAlertCategory.E5; break;
@@ -111,14 +118,28 @@ public class CustomSignalJSON {
     public void recalculateFinalAlert() {
 
         System.out.printf("[%s] Attempting to recalculate final alert.%n", CustomSignalJSON.class.getSimpleName());
-        assessThreat("E5");
-        assessThreat("E4");
-        assessThreat("E3");
+        /*
+        * as default, threat is E1.
+        * assess if it's a threat of a higher level.
+        * if actual alert category (threat lv) did not increase, there's no need to calculate
+        * other levels
+        *
+        * feel free to refactor.
+        * i really don't care.
+        * */
         assessThreat("E2");
+        if(this.category == FinalAlertCategory.E2) assessThreat("E3");
+        if(this.category == FinalAlertCategory.E3) assessThreat("E4");
+        if(this.category == FinalAlertCategory.E4) assessThreat("E5");
     }
 
     @Override
     public String toString() {
+        /*
+        * feel free to refactor it as an actual json object
+        * instead of doing this.
+        * i don't have time or energy to work with that.
+        * */
         return String.format(
                 """
                 {
