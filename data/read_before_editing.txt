@@ -1,0 +1,17 @@
+'rD'     -- route difficulty (eg. d2)
+'thLv'   -- threat level (output signal, eg. E5)
+'alerts' -- provided alerts, (eg. w3, f1), where:
+    - avalanche alerts (eg. a1) are ranging from [1-5]
+    - any other than avalanche ranges from [1-3].
+
+Sample data input formatted as table:
+
+|  thLV  |  rD  |  alerts           |
++--------+------+-------------------+
+|   E5   |  d4  | w3 v f2 v r1 v a1 |
+|        +------+-------------------+
+|        |  d3  | w4 v f1 v r1 v a1 |
++--------+------+-------------------+
+|   E4   |  d4  | w3 v f2 v r1 v a1 |
+|        +      +                   +
+    ...

@@ -1,0 +1,16 @@
+{
+    "routeName": "default",
+    "routeDifficulty": "CASUAL",
+    "alert": {
+        "label": "E1",
+        "color": "green",
+        "threatLevel": "low",
+    },
+    "conditions": {
+        "wind": 0,
+        "fog": 0,
+        "temperature": 0,
+        "rain": 0,
+        "avalancheRisk": 0
+    }
+}

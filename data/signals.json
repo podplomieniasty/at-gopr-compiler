@@ -1,0 +1,152 @@
+{
+  "categories": [
+    {
+      "label": "E5",
+      "conditions": [
+        {
+          "difficulty": 4,
+          "minWindLv": 2,
+          "minFogLv": 2,
+          "minTemperatureLv": 2,
+          "minRainLv": 2,
+          "minAvalancheLv": 2
+        },
+        {
+          "difficulty": 3,
+          "minWindLv": 2,
+          "minFogLv": 2,
+          "minTemperatureLv": 3,
+          "minRainLv": 2,
+          "minAvalancheLv": 3
+        },
+        {
+          "difficulty": 2,
+          "minWindLv": 3,
+          "minFogLv": 3,
+          "minTemperatureLv": 3,
+          "minRainLv": 3,
+          "minAvalancheLv": 4
+        },
+        {
+          "difficulty": 1,
+          "minWindLv": 3,
+          "minFogLv": 3,
+          "minTemperatureLv": 0,
+          "minRainLv": 3,
+          "minAvalancheLv": 4
+        }
+      ]
+    },
+    {
+      "label": "E4",
+      "conditions": [
+        {
+          "difficulty": 4,
+          "minWindLv": 2,
+          "minFogLv": 2,
+          "minTemperatureLv": 3,
+          "minRainLv": 3,
+          "minAvalancheLv": 2
+        },
+        {
+          "difficulty": 3,
+          "minWindLv": 2,
+          "minFogLv": 2,
+          "minTemperatureLv": 3,
+          "minRainLv": 3,
+          "minAvalancheLv": 3
+        },
+        {
+          "difficulty": 2,
+          "minWindLv": 3,
+          "minFogLv": 3,
+          "minTemperatureLv": 0,
+          "minRainLv": 3,
+          "minAvalancheLv": 4
+        },
+        {
+          "difficulty": 1,
+          "minWindLv": 3,
+          "minFogLv": 0,
+          "minTemperatureLv": 0,
+          "minRainLv": 3,
+          "minAvalancheLv": 4
+        }
+      ]
+    },
+    {
+      "label": "E3",
+      "conditions": [
+        {
+          "difficulty": 4,
+          "minWindLv": 2,
+          "minFogLv": 2,
+          "minTemperatureLv": 3,
+          "minRainLv": 3,
+          "minAvalancheLv": 2
+        },
+        {
+          "difficulty": 3,
+          "minWindLv": 2,
+          "minFogLv": 3,
+          "minTemperatureLv": 3,
+          "minRainLv": 3,
+          "minAvalancheLv": 3
+        },
+        {
+          "difficulty": 2,
+          "minWindLv": 3,
+          "minFogLv": 3,
+          "minTemperatureLv": 0,
+          "minRainLv": 0,
+          "minAvalancheLv": 4
+        },
+        {
+          "difficulty": 1,
+          "minWindLv": 3,
+          "minFogLv": 0,
+          "minTemperatureLv": 0,
+          "minRainLv": 0,
+          "minAvalancheLv": 4
+        }
+      ]
+    },
+    {
+      "label": "E2",
+      "conditions": [
+        {
+          "difficulty": 4,
+          "minWindLv": 2,
+          "minFogLv": 3,
+          "minTemperatureLv": 3,
+          "minRainLv": 3,
+          "minAvalancheLv": 2
+        },
+        {
+          "difficulty": 3,
+          "minWindLv": 2,
+          "minFogLv": 3,
+          "minTemperatureLv": 3,
+          "minRainLv": 0,
+          "minAvalancheLv": 3
+        },
+        {
+          "difficulty": 2,
+          "minWindLv": 3,
+          "minFogLv": 0,
+          "minTemperatureLv": 0,
+          "minRainLv": 0,
+          "minAvalancheLv": 4
+        },
+        {
+          "difficulty": 1,
+          "minWindLv": 0,
+          "minFogLv": 0,
+          "minTemperatureLv": 0,
+          "minRainLv": 0,
+          "minAvalancheLv": 4
+        }
+      ]
+    }
+  ]
+}

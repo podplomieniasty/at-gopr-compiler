@@ -1,0 +1,53 @@
+package at.example;
+
+import at.example.enums.DifficultyCategory;
+
+public class CustomSignalVisitor extends SignalBaseVisitor<String> {
+
+    public CustomSignalJSON outputJson = new CustomSignalJSON();
+
+    @Override
+    public String visitProg(SignalParser.ProgContext ctx) {
+        //if(!(ctx.parent instanceof SignalParser.ProgContext)) return null;
+        String vis = visitChildren(ctx);
+        outputJson.recalculateFinalAlert();
+        return vis;
+    }
+
+    @Override
+    public String visitLine(SignalParser.LineContext ctx) {
+        System.out.printf("[%s] Visited provided input as: %s\n", CustomSignalVisitor.class.getSimpleName(), ctx.getText());
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public String visitRoute(SignalParser.RouteContext ctx) {
+
+        int diffValue = Integer.parseInt(ctx.DIFFICULTY().getText().substring(1));
+        outputJson.difficulty = DifficultyCategory.values()[diffValue-1];
+        return visitChildren(ctx);
+
+    }
+
+    @Override
+    public String visitParenthesis_expr(SignalParser.Parenthesis_exprContext ctx) {
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public String visitExpr(SignalParser.ExprContext ctx) {
+        return visitChildren(ctx);
+    }
+
+    @Override
+    public String visitWeather_condition(SignalParser.Weather_conditionContext ctx) {
+        if(ctx.parent instanceof SignalParser.ExprContext) {
+            String elem = ctx.getText().substring(0, 1).toUpperCase();
+            int value = Integer.parseInt(ctx.getText().substring(1));
+            if(outputJson.getCondition(elem) < value)
+                outputJson.setCondition(elem, value);
+            return visitChildren(ctx);
+        }
+        return null;
+    }
+}
